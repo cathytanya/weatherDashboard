@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    background: linear-gradient( blue,orange);
+    color: aliceblue;
+    font-size: 45px;
+    text-align: center;
+}
