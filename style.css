@@ -1,14 +1,21 @@
+/* univeral element */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+/* the banner/header is designed */
 header{
     background: linear-gradient( blue,orange);
     color: aliceblue;
     font-size: 45px;
     text-align: center;
 }
+body{
+    background: url(https://openweather.co.uk/storage/app/media/we-are-pleased-announce-our-new-statistical-weather-data-api-now-available.png);
+    background-size: cover;
+}
 .input{
-    text-align: center;
+    background: whitesmoke;
+    padding-right: 0;
 }
