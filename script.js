@@ -7,16 +7,22 @@ let humidity = document.querySelector("humidity")
 let windSpeed = document.querySelector("windSpeed")
 let indexUV = document.querySelector("indexUV")
 
+// todays date will come from moment.js
+let date = moment().format("ddd MMM Do, YYYY, hh:mm:ss")
+$("#todayDate").text(todayDate)
+console.log(date)
+
 // event listener to occur when the submit button is pressed
 button.addEventListener("click",function(){
-    //Aapi.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
-    // my API key is d9e0fa417e5a25b1237d9e6b7fcee2e0
-    fetch("https://api.openweathermap.org/data/2.5/forecast?q="+inputCity.value+"&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0")
+    // made my API key into a variable
+    let key = "d9e0fa417e5a25b1237d9e6b7fcee2e0"
+    let url = "http://api.openweathermap.org/data/2.5/forecast?q="+inputCity.value+"&appid="+key
+    fetch(url)
     .then(response => response.json())
     .then(data => console.log(data))
-    .then( data => {
+    .then(data => {
         // setting variables in the function to call on the API variables needed
-        let city = data['name']
+        let city = data["name"]
         let tempVal = data["main"]["temp"]
         let humidityVal  = data["main"]["humidity"]
         let windSpeedVal = data["wing"]["speed"]
@@ -26,7 +32,6 @@ button.addEventListener("click",function(){
         humidity.innerHTML = humidityVal
         windSpeed.innerHTML = windSpeedVal
     })
-    cityName
 
     .catch (err => alert("Wrong city!"))
 })
