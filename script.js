@@ -8,16 +8,15 @@ let windSpeed = document.querySelector("windSpeed")
 let indexUV = document.querySelector("indexUV")
 
 // todays date will come from moment.js
-let date = moment().format("ddd MMM Do, YYYY, hh:mm:ss")
-$("#todayDate").text(todayDate)
-console.log(date)
+// let date = moment().format("ddd MMM Do, YYYY, hh:mm:ss")
+// $("#todayDate").text(todayDate)
+// console.log(date)
 
 // event listener to occur when the submit button is pressed
 button.addEventListener("click",function(){
     // made my API key into a variable
-    let key = "d9e0fa417e5a25b1237d9e6b7fcee2e0"
-    let url = "http://api.openweathermap.org/data/2.5/forecast?q="+inputCity.value+"&appid="+key
-    fetch(url)
+    // let url = "http://api.openweathermap.org/data/2.5/forecast?q="+inputCity.value+"&appid="+key
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q="+inputCity.value+"&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0")
     .then(response => response.json())
     .then(data => console.log(data))
     .then(data => {
