@@ -9,17 +9,30 @@ let windSpeed = document.querySelector(".windSpeed")
 let indexUV = document.querySelector(".indexUV")
 
 function renderCurrentDay(){
-    
-
+    // for the icon use innerHTML because since its not actual text
+    // everything else would use textcontent
 }
 
 function renderFiveDay(){
+    // createelement (method)
+    // class called five-day
+        // have an empty container that will allow you to append elements which will be added to this function
+        // use only append
+    
+
 
 }
 
-function weather(){
-    let weatherURL = "https://api.openweathermap.org/data/2.5/forecast?q="+inputCity.value+"&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0"
+function renderItems(cityName,data){
+    renderCurrentDay(cityName)
+    renderFiveDay()
+    console.log(cityName,data)
+}
 
+
+function corrfind(){
+    
+    let weatherURL = "https://api.openweathermap.org/data/2.5/forecast?q="+inputCity.value+"&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0"
     fetch(weatherURL) 
         .then(function(response){
             return response.json();
@@ -27,43 +40,42 @@ function weather(){
         .then(function(data){
             console.log(data);
             // confirming the location of the coordinates in the api data
-            console.log(data.city.coord.lat)
-            console.log(data.city.coord.lon)
-
-            // renderCurrentDay(cityName,)
-            // renderFiveDay()
-
-
-                
-
-
-        })
-   
+            // let lat = data.city.coord.lat
+            // let lon = data.city.coord.lon
+            // console.log(data.city.coord.lat)
+            // console.log(data.city.coord.lon)
+            weather(data)
+           
+        });
 }
-button.addEventListener("click",weather);
-// event listener to occur when the submit button is pressed
-// button.addEventListener("click",function(){
-    // made my API key into a variable
-    // fetch("http://api.openweathermap.org/data/2.5/forecast?q="+inputCity.value+"&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0")
-    // .then(response => response.json())
-    // .then(data => console.log(data))
-    // This will be grabbing the data from the api
-    // .then(data => {
-    //     // setting variables in the function to call on the API variables needed
-        // let city = data["city"]["name"]
-        // let tempVal = data["main"]["temp"]
-        // let descVal = data["weather"]["description"]
-        // let iconVal = data["weather"]["icon"]
-        // let humidityVal  = data["main"]["humidity"]
-        // let windSpeedVal = data["wing"]["speed"]
-        // let indexUVVal = data[""]
-        // cityName.innerHTML = city
-        // temp.innerHTML = tempVal
-        // desc.innerHTML = descVal
-        // icon.innerHTML = iconVal
-        // humidity.innerHTML = humidityVal
-        // windSpeed.innerHTML = windSpeedVal
-//     })
+    
+function weather(data){
+        console.log(data)
+        console.log(data.city.coord.lat)
+        console.log(data.city.coord.lon)
+        let latVal = data.city.coord.lat
+        let lonVal = data.city.coord.lon
 
-//     .catch (err => alert("Wrong city!"))
-// })
+        let infoURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+latVal+"&lon="+lonVal+"&exclude={part}&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0"
+        fetch(infoURL)
+            .then(function(results){
+                return results.json()      
+            })
+
+            .then(function(data){
+               renderItems(cityName,data)
+           })
+
+
+        
+
+    }
+
+
+        // let infoURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&exclude={part}&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0"
+        
+
+        //     // renderCurrentDay(cityName,)
+        //     // renderFiveDa
+
+button.addEventListener("click",corrfind);
