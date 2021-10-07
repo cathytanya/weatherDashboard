@@ -11,6 +11,7 @@ let indexUV = document.querySelector(".indexUV")
 function renderCurrentDay(){
     // for the icon use innerHTML because since its not actual text
     // everything else would use textcontent
+    console.log()
 }
 
 function renderFiveDay(){
@@ -22,16 +23,17 @@ function renderFiveDay(){
 
 
 }
-
+// this function is used to call the renderFiveDay(). 
+// the console.log is ensuring that the data from weather function is passing through
 function renderItems(cityName,data){
     renderCurrentDay(cityName)
     renderFiveDay()
     console.log(cityName,data)
 }
 
-
+// this function will find the longitude and latitude
 function corrfind(){
-    
+    // this element is holding the api link for the 
     let weatherURL = "https://api.openweathermap.org/data/2.5/forecast?q="+inputCity.value+"&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0"
     fetch(weatherURL) 
         .then(function(response){
@@ -48,20 +50,20 @@ function corrfind(){
            
         });
 }
-    
+// this function pulls the latitude and longitude from the corrfind
+// used console.log to confirm that the information is passing through this function   
 function weather(data){
         console.log(data)
         console.log(data.city.coord.lat)
         console.log(data.city.coord.lon)
         let latVal = data.city.coord.lat
         let lonVal = data.city.coord.lon
-
+        // the link to the will be used in the fetch to grab its data
         let infoURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+latVal+"&lon="+lonVal+"&exclude={part}&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0"
         fetch(infoURL)
             .then(function(results){
                 return results.json()      
             })
-
             .then(function(data){
                renderItems(cityName,data)
            })
