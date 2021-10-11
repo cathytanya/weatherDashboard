@@ -1,5 +1,5 @@
 // set variables to call information from the html
-let button = document.querySelector(".buttonSubmit")
+let submitbtn = document.querySelector(".buttonSubmit")
 let inputCity = document.querySelector(".inputCity")
 let cityName = document.querySelector(".cityName")
 let temp = document.querySelector(".temp")
@@ -8,10 +8,17 @@ let humidity = document.querySelector(".humidity")
 let windSpeed = document.querySelector(".windSpeed")
 let indexUV = document.querySelector(".indexUV")
 
-function renderCurrentDay(){
+function renderCurrentDay(data){
+
+    let tempK = current.temp
+    let humidity = current.humidity
+    let speedW = current.wind_speed
+    let uv = current.uvi
+    console.log(current.temp)
+    console.log(current.humidity)
+
     // for the icon use innerHTML because since its not actual text
     // everything else would use textcontent
-    console.log()
 }
 
 function renderFiveDay(){
@@ -26,7 +33,7 @@ function renderFiveDay(){
 // this function is used to call the renderFiveDay(). 
 // the console.log is ensuring that the data from weather function is passing through
 function renderItems(cityName,data){
-    renderCurrentDay(cityName)
+    renderCurrentDay(cityName,data)
     renderFiveDay()
     console.log(cityName,data)
 }
@@ -47,37 +54,35 @@ function corrfind(){
             // console.log(data.city.coord.lat)
             // console.log(data.city.coord.lon)
             weather(data)
-           
         });
 }
 // this function pulls the latitude and longitude from the corrfind
 // used console.log to confirm that the information is passing through this function   
 function weather(data){
-        console.log(data)
-        console.log(data.city.coord.lat)
-        console.log(data.city.coord.lon)
-        let latVal = data.city.coord.lat
-        let lonVal = data.city.coord.lon
-        // the link to the will be used in the fetch to grab its data
-        let infoURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+latVal+"&lon="+lonVal+"&exclude={part}&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0"
-        fetch(infoURL)
-            .then(function(results){
-                return results.json()      
-            })
-            .then(function(data){
-               renderItems(cityName,data)
-           })
-
-
-        
-
-    }
-
-
+    console.log(data)
+    console.log(data.city.coord.lat)
+    console.log(data.city.coord.lon)
+    //find the latitude coordinates
+    let latVal = data.city.coord.lat
+    //find the longitude coordinate 
+    let lonVal = data.city.coord.lon
+    // the link to the will be used in the fetch to grab its data
+    let infoURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+latVal+"&lon="+lonVal+"&exclude={part}&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0"
+    fetch(infoURL)
+        .then(function(results){
+            return results.json()      
+        })
+        .then(function(data){
+            renderItems(cityName,data)
+        })
+    // Appending the data
+    let cityName = data.city.name 
+    (cityName).text(cityName)
+}
         // let infoURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&exclude={part}&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0"
         
 
         //     // renderCurrentDay(cityName,)
         //     // renderFiveDa
 
-button.addEventListener("click",corrfind);
+        submitbtn.addEventListener("click",corrfind);
