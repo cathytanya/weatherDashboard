@@ -1,12 +1,12 @@
 // set variables to call information from the html
-let submitbtn = document.querySelector(".buttonSubmit")
-let inputCity = document.querySelector(".inputCity")
-let cityName = document.querySelector(".cityName")
-let temp = document.querySelector(".temp")
-let icon = document.querySelector(".icon")
-let humidity = document.querySelector(".humidity")
-let windSpeed = document.querySelector(".windSpeed")
-let indexUV = document.querySelector(".indexUV")
+let submitbtn = document.getElement(".buttonSubmit")
+let inputCity = document.getElementById("#inputCity")
+let cityName = document.getElementById("#cityName")
+let temp = document.getElementById("#temp")
+let icon = document.getElementById("#icon")
+let humidity = document.getElementById("#humidity")
+let windSpeed = document.getElementById("#windSpeed")
+let indexUV = document.getElementById("#indexUV")
 
 function renderCurrentDay(cityName,data){
     console.log(data)
@@ -16,7 +16,8 @@ function renderCurrentDay(cityName,data){
     let tempK = data.current.temp
     let tempC = Math.round(100*(tempK-273.15))/100;
     let humid = data.current.humidity
-    let speedW = data.current.wind_speed
+    //convert the wind speed to km/h
+    let speedW = Math.round((data.current.wind_speed*3.6))
     let uv = data.current.uvi
     let con = data.current.icon
     // console logging the data to verify its correct
@@ -27,12 +28,14 @@ function renderCurrentDay(cityName,data){
     console.log(uv)
     console.log(con)
     // using .textContent/.innerHTML for the rendered information to appear on the application
-    cityName.textContent = name;
-    temp.textContent = tempK;
-    humidity.textContent = humid;
-    windSpeed.textContent = speedW;
-    indexUV.textContent = uv;
+    city.textContent="City: "+name;
+    temp.textContent ="Temperature: "+tempK+"°C";
+    humidity.textContent ="Humidity: "+humid+" %";
+    windSpeed.textContent ="Wind Speed: "+speedW+" km/h";
+    indexUV.textContent ="UV index: "+uv;
     icon.innerHTML = con;
+
+
 
 
 
