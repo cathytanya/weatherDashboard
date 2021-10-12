@@ -11,19 +11,30 @@ let indexUV = document.querySelector(".indexUV")
 function renderCurrentDay(cityName,data){
     console.log(data)
     // rendering the necessary information to variables
+    let name = cityName
+    // to convert the tempereature from kelvins(K) to Celsius(C) and round to the hundreth
     let tempK = data.current.temp
-    let humidity = data.current.humidity
+    let tempC = Math.round(100*(tempK-273.15))/100;
+    let humid = data.current.humidity
     let speedW = data.current.wind_speed
     let uv = data.current.uvi
     let con = data.current.icon
     // console logging the data to verify its correct
-    console.log(tempK)
-    console.log(humidity)
+    console.log(name)
+    console.log(tempC)
+    console.log(humid)
     console.log(speedW)
     console.log(uv)
     console.log(con)
     // using .textContent/.innerHTML for the rendered information to appear on the application
-    
+    cityName.textContent = name;
+    temp.textContent = tempK;
+    humidity.textContent = humid;
+    windSpeed.textContent = speedW;
+    indexUV.textContent = uv;
+    icon.innerHTML = con;
+
+
 
 
     // for the icon use innerHTML because since its not actual text
