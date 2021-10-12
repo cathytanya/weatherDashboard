@@ -1,12 +1,12 @@
 // set variables to call information from the html
-let submitbtn = document.getElement(".buttonSubmit")
-let inputCity = document.getElementById("#inputCity")
-let cityName = document.getElementById("#cityName")
-let temp = document.getElementById("#temp")
-let icon = document.getElementById("#icon")
-let humidity = document.getElementById("#humidity")
-let windSpeed = document.getElementById("#windSpeed")
-let indexUV = document.getElementById("#indexUV")
+let submitbtn = document.querySelector(".buttonSubmit")
+let inputCity = document.querySelector(".inputCity")
+let cityName = document.querySelector(".cityName")
+let temp = document.querySelector(".temp")
+let icon = document.querySelector(".icon")
+let humidity = document.querySelector(".humidity")
+let windSpeed = document.querySelector(".windSpeed")
+let indexUV = document.querySelector(".indexUV")
 
 function renderCurrentDay(cityName,data){
     console.log(data)
@@ -28,14 +28,23 @@ function renderCurrentDay(cityName,data){
     console.log(uv)
     console.log(con)
     // using .textContent/.innerHTML for the rendered information to appear on the application
-    city.textContent="City: "+name;
-    temp.textContent ="Temperature: "+tempK+"°C";
-    humidity.textContent ="Humidity: "+humid+" %";
-    windSpeed.textContent ="Wind Speed: "+speedW+" km/h";
-    indexUV.textContent ="UV index: "+uv;
+    cityName.textContent=" City: "+name;
+    temp.textContent =" Temperature: "+tempK+"°C";
+    humidity.textContent =" Humidity: "+humid+" %";
+    windSpeed.textContent =" Wind Speed: "+speedW+" km/h";
+    indexUV.textContent =" UV index: "+uv+" ";
+    if (uv >= 0 && uv <= 2){
+        indexUV.setAttribute("style","background: green; border-style: solid; width:fit-content; color:white")
+    }else if (uv >= 3 && uv <= 5){
+        indexUV.setAttribute("style","background: yellow; border-style: solid; width:fit-content")
+    }else if (uv >= 6 && uv <= 7){
+        indexUV.setAttribute("style","background: orange; border-style: solid; width:fit-content")
+    }else{
+        indexUV.setAttribute("style","background: red; border-style: solid; width:fit-content; color:white")
+    }
     icon.innerHTML = con;
 
-
+    
 
 
 
