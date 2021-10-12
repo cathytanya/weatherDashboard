@@ -8,20 +8,30 @@ let humidity = document.querySelector(".humidity")
 let windSpeed = document.querySelector(".windSpeed")
 let indexUV = document.querySelector(".indexUV")
 
-function renderCurrentDay(data){
+function renderCurrentDay(cityName,data){
+    console.log(data)
+    // rendering the necessary information to variables
+    let tempK = data.current.temp
+    let humidity = data.current.humidity
+    let speedW = data.current.wind_speed
+    let uv = data.current.uvi
+    let con = data.current.icon
+    // console logging the data to verify its correct
+    console.log(tempK)
+    console.log(humidity)
+    console.log(speedW)
+    console.log(uv)
+    console.log(con)
+    // using .textContent/.innerHTML for the rendered information to appear on the application
+    
 
-    let tempK = current.temp
-    let humidity = current.humidity
-    let speedW = current.wind_speed
-    let uv = current.uvi
-    console.log(current.temp)
-    console.log(current.humidity)
 
     // for the icon use innerHTML because since its not actual text
     // everything else would use textcontent
 }
 
 function renderFiveDay(){
+
     // createelement (method)
     // class called five-day
         // have an empty container that will allow you to append elements which will be added to this function
@@ -30,18 +40,18 @@ function renderFiveDay(){
 
 
 }
-// this function is used to call the renderFiveDay(). 
+// this function is used to call the renderFiveDay() and renderCurrentDay()
 // the console.log is ensuring that the data from weather function is passing through
 function renderItems(cityName,data){
     renderCurrentDay(cityName,data)
-    renderFiveDay()
+    renderFiveDay(cityName,data)
     console.log(cityName,data)
 }
-
 // this function will find the longitude and latitude
 function corrfind(){
+    let key = "720340e154314c77dd80d328e3567077"
     // this element is holding the api link for the 
-    let weatherURL = "https://api.openweathermap.org/data/2.5/forecast?q="+inputCity.value+"&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0"
+    let weatherURL = "https://api.openweathermap.org/data/2.5/forecast?q="+inputCity.value+"&appid="+key
     fetch(weatherURL) 
         .then(function(response){
             return response.json();
@@ -49,16 +59,17 @@ function corrfind(){
         .then(function(data){
             console.log(data);
             // confirming the location of the coordinates in the api data
-            // let lat = data.city.coord.lat
-            // let lon = data.city.coord.lon
-            // console.log(data.city.coord.lat)
-            // console.log(data.city.coord.lon)
+            let lat = data.city.coord.lat
+            let lon = data.city.coord.lon
+            console.log(lat)
+            console.log(lon)
             weather(data)
         });
 }
 // this function pulls the latitude and longitude from the corrfind
 // used console.log to confirm that the information is passing through this function   
 function weather(data){
+    let key = "720340e154314c77dd80d328e3567077"
     console.log(data)
     console.log(data.city.coord.lat)
     console.log(data.city.coord.lon)
@@ -67,7 +78,7 @@ function weather(data){
     //find the longitude coordinate 
     let lonVal = data.city.coord.lon
     // the link to the will be used in the fetch to grab its data
-    let infoURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+latVal+"&lon="+lonVal+"&exclude={part}&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0"
+    let infoURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+latVal+"&lon="+lonVal+"&exclude={part}&appid="+key
     fetch(infoURL)
         .then(function(results){
             return results.json()      
@@ -77,12 +88,10 @@ function weather(data){
         })
     // Appending the data
     let cityName = data.city.name 
-    (cityName).text(cityName)
+    // verified that this is where the city's name is located in the API
+    console.log(cityName)
 }
         // let infoURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&exclude={part}&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0"
-        
 
-        //     // renderCurrentDay(cityName,)
-        //     // renderFiveDa
 
         submitbtn.addEventListener("click",corrfind);
