@@ -9,30 +9,6 @@ let descjs = document.querySelector("#description")
 let humidity = document.querySelector(".humidity")
 let windSpeed = document.querySelector(".windSpeed")
 let indexUV = document.querySelector(".indexUV")
-// these variables are used in future day section of the application
-let temp0js = document.querySelector("#temp0")
-let icon0js = document.querySelector("#icon0")
-let desc0js = document.querySelector("#description0")
-let humidity0js = document.querySelector("#humidity0")
-let windSpeed0js = document.querySelector("#windSpeed0")
-
-let temp1js = document.querySelector("#temp1")
-let icon1js = document.querySelector("#icon1")
-let desc1js = document.querySelector("#description1")
-let humidity1js = document.querySelector("#humidity1")
-let windSpeed1js = document.querySelector("#windSpeed1")
-
-let temp2js = document.querySelector("#temp2")
-let icon2js = document.querySelector("#icon2")
-let desc2js = document.querySelector("#description2")
-let humidity2js = document.querySelector("#humidity2")
-let windSpeed2js = document.querySelector("#windSpeed2")
-
-let temp3js = document.querySelector("#temp3")
-let icon3js = document.querySelector("#icon3")
-let desc3js = document.querySelector("#description3")
-let humidity3js = document.querySelector("#humidity3")
-let windSpeed3js = document.querySelector("#windSpeed3")
 
 function renderCurrentDay(cityName,data){
     console.log(data)
@@ -96,14 +72,41 @@ function renderFiveDay(data){
     humidity0.textContent ="Humidity: "+ humid0 +" %";
     windSpeed0.textContent ="Wind Speed: "+ windspeed0 +" km/h";
 
+    // rendering the day 1 on the application
+    let temp1C = Math.round(100*((data.daily[0].temp.day)-273.15))/100;
+    let desc1 = data.daily[1].weather[0].description
+    let icon1image = data.daily[1].weather[0].icon
+    let humid1 = data.daily[1].humidity
+    let windspeed1 = Math.round((data.daily[1].wind_speed*3.6))
+    temp1.textContent ="Temperature: "+ temp1C +" °C";
+    icon1.innerHTML = "<img src=http://openweathermap.org/img/wn/"+icon1image+".png>";
+    description1.textContent = desc1;
+    humidity1.textContent ="Humidity: "+ humid1 +" %";
+    windSpeed1.textContent ="Wind Speed: "+ windspeed1 +" km/h";
 
+    // rendering the day 2 on the application
+    let temp2C = Math.round(100*((data.daily[0].temp.day)-273.15))/100;
+    let desc2 = data.daily[2].weather[0].description
+    let icon2image = data.daily[2].weather[0].icon
+    let humid2 = data.daily[2].humidity
+    let windspeed2 = Math.round((data.daily[2].wind_speed*3.6))
+    temp2.textContent ="Temperature: "+ temp2C +" °C";
+    icon2.innerHTML = "<img src=http://openweathermap.org/img/wn/"+icon2image+".png>";
+    description2.textContent = desc2;
+    humidity2.textContent ="Humidity: "+ humid2 +" %";
+    windSpeed2.textContent ="Wind Speed: "+ windspeed2 +" km/h";
 
-
-
-
-    
-
-
+    // rendering the day 3 on the application
+    let temp3C = Math.round(100*((data.daily[0].temp.day)-273.15))/100;
+    let desc3 = data.daily[3].weather[0].description
+    let icon3image = data.daily[3].weather[0].icon
+    let humid3 = data.daily[3].humidity
+    let windspeed3 = Math.round((data.daily[3].wind_speed*3.6))
+    temp3.textContent ="Temperature: "+ temp3C +" °C";
+    icon3.innerHTML = "<img src=http://openweathermap.org/img/wn/"+icon3image+".png>";
+    description3.textContent = desc3;
+    humidity3.textContent ="Humidity: "+ humid3 +" %";
+    windSpeed3.textContent ="Wind Speed: "+ windspeed3 +" km/h";
 }
 // this function is used to call the renderFiveDay() and renderCurrentDay()
 // the console.log is ensuring that the data from weather function is passing through
@@ -156,7 +159,4 @@ function weather(data){
     // verified that this is where the city's name is located in the API
     console.log(cityName)
 }
-        // let infoURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&exclude={part}&appid=d9e0fa417e5a25b1237d9e6b7fcee2e0"
-
-
         submitbtn.addEventListener("click",corrfind);
