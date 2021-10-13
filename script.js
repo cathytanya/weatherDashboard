@@ -111,7 +111,7 @@ function renderFiveDay(data){
 // this function will strictly work on the local storage of the cities searched
 function cityLocalStore(cityName){
     localStorage.setItem("place",cityName)
-    console.log(localStorage.place)
+    console.log(localStorage.getitem("place"))
     }
 // this function is used to call the renderFiveDay() and renderCurrentDay()
 // the console.log is ensuring that the data from weather function is passing through
