@@ -23,13 +23,16 @@ font-size: larger;
 text-align: center;
 }
 
-.todayWeather {
-    display: block;
+.todayWeather,
+.day0,
+.day1,
+.day2,
+.day3 {
     margin-left: auto;
     margin-right: auto;
-    border: 5px solid #252506;
+    border: 1px solid #252506;
     text-align: center;
-    background-color: aliceblue;
+    background-color: rgb(251, 211, 118);
     width:fit-content;
     }
 

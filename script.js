@@ -40,11 +40,11 @@ function renderCurrentDay(cityName,data){
     windSpeed.textContent ="Wind Speed: "+ speedW +" km/h";
     indexUV.textContent ="UV index: "+ uv +" ";
     // this if statement changes the colour of the UX index
-    if (uv >= 0 || uv <= 2){
+    if (uv >= 0 && uv <= 2){
         indexUV.setAttribute("style","background: green; border-style: solid; width:fit-content; color:white;text-align: center;")
-    }else if (uv >= 3 || uv <= 5){
+    }else if (uv >= 3 && uv <= 5){
         indexUV.setAttribute("style","background: yellow; border-style: solid; width:fit-content;text-align: center;")
-    }else if (uv >= 6 || uv <= 7){
+    }else if (uv >= 6 && uv < 7){
         indexUV.setAttribute("style","background: orange; border-style: solid; width:fit-content;text-align: center;")
     }else{
         indexUV.setAttribute("style","background: red; border-style: solid; width:fit-content; color:whitetext-align: center;")
