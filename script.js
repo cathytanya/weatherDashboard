@@ -1,7 +1,7 @@
 // set variables to call information from the html
 let submitbtn = document.querySelector(".buttonSubmit")
 let inputCity = document.querySelector(".inputCity")
-let cityName = document.querySelector(".cityName")
+let city = document.querySelector(".cityName")
 let temp = document.querySelector(".temp")
 let icon = document.querySelector(".icon")
 let humidity = document.querySelector(".humidity")
@@ -10,6 +10,8 @@ let indexUV = document.querySelector(".indexUV")
 
 function renderCurrentDay(cityName,data){
     console.log(data)
+    let today = moment()
+    $("#day").text(today.format("MMM Do, YYYY"));
     // rendering the necessary information to variables
     let name = cityName
     // to convert the tempereature from kelvins(K) to Celsius(C) and round to the hundreth
@@ -19,7 +21,7 @@ function renderCurrentDay(cityName,data){
     //convert the wind speed to km/h
     let speedW = Math.round((data.current.wind_speed*3.6))
     let uv = data.current.uvi
-    let con = data.current.icon
+    let con = data.current.weather[0].icon
     // console logging the data to verify its correct
     console.log(name)
     console.log(tempC)
@@ -27,23 +29,24 @@ function renderCurrentDay(cityName,data){
     console.log(speedW)
     console.log(uv)
     console.log(con)
+    console.log(data.current.weather.description)
     // using .textContent/.innerHTML for the rendered information to appear on the application
-    cityName.textContent=" City: "+ name;
-    temp.textContent =" Temperature: "+ tempC +" °C";
-    humidity.textContent =" Humidity: "+ humid +" %";
-    windSpeed.textContent =" Wind Speed: "+ speedW +" km/h";
-    indexUV.textContent =" UV index: "+ uv +" ";
+    city.textContent=" City: "+ name;
+    temp.textContent ="Temperature:"+ tempC +" °C";
+    humidity.textContent ="Humidity:"+ humid +" %";
+    windSpeed.textContent ="Wind Speed:"+ speedW +" km/h";
+    indexUV.textContent ="UV index:"+ uv +" ";
     // this if statement changes the colour of the UX index
     if (uv >= 0 && uv <= 2){
-        indexUV.setAttribute("style","background: green; border-style: solid; width:fit-content; color:white")
+        indexUV.setAttribute("style","background: green; border-style: solid; width:fit-content; color:white;text-align: center;")
     }else if (uv >= 3 && uv <= 5){
-        indexUV.setAttribute("style","background: yellow; border-style: solid; width:fit-content")
+        indexUV.setAttribute("style","background: yellow; border-style: solid; width:fit-content;text-align: center;")
     }else if (uv >= 6 && uv <= 7){
-        indexUV.setAttribute("style","background: orange; border-style: solid; width:fit-content")
+        indexUV.setAttribute("style","background: orange; border-style: solid; width:fit-content;text-align: center;")
     }else{
-        indexUV.setAttribute("style","background: red; border-style: solid; width:fit-content; color:white")
+        indexUV.setAttribute("style","background: red; border-style: solid; width:fit-content; color:whitetext-align: center;")
     }
-    icon.innerHTML = con;
+    icon.innerHTML = "Description: <img src=http://openweathermap.org/img/wn/"+con+".png>  "+data.current.weather[0].description;
     // for the icon use innerHTML because since its not actual text
     // everything else would use textcontent
 }
