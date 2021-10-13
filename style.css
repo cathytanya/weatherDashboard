@@ -23,11 +23,7 @@ font-size: larger;
 text-align: center;
 }
 
-.todayWeather,
-.day0,
-.day1,
-.day2,
-.day3 {
+.todayWeather{
     margin-left: auto;
     margin-right: auto;
     border: 1px solid #252506;
@@ -35,6 +31,16 @@ text-align: center;
     background-color: rgb(251, 211, 118);
     width:fit-content;
     }
+
+.day0,
+.day1,
+.day2,
+.day3 {
+    display: inline-table;
+    background-color: rgb(251, 211, 118);
+    border: 1px solid #252506;
+    width:fit-content;
+}
 
 .icon{
     vertical-align: middle;
