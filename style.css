@@ -11,18 +11,20 @@ header{
     font-size: 45px;
     text-align: center;
 }
+/* overall body styling for the html */
 body{
     background: url(https://cdn.windowsreport.com/wp-content/uploads/2019/08/Storm-Weather-886x590.jpg);
     background-repeat: no-repeat ;
     background-size: cover;
 }
+/* styling for the input box */
 .input{
 background: whitesmoke;
 position: absolute;
 font-size: larger;
 text-align: center;
 }
-
+/* styling for the current day box that is in the center of the page */
 .todayWeather{
     margin-left: auto;
     margin-right: auto;
@@ -31,7 +33,7 @@ text-align: center;
     background-color: rgb(251, 211, 118);
     width:fit-content;
     }
-
+/* the future days styling that are put into 4 columns */
 .day0,
 .day1,
 .day2,
@@ -40,8 +42,4 @@ text-align: center;
     background-color: rgb(251, 211, 118);
     border: 1px solid #252506;
     width:fit-content;
-}
-
-.icon{
-    vertical-align: middle;
 }
