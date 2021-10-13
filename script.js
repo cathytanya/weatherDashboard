@@ -108,11 +108,17 @@ function renderFiveDay(data){
     humidity3.textContent ="Humidity: "+ humid3 +" %";
     windSpeed3.textContent ="Wind Speed: "+ windspeed3 +" km/h";
 }
+// this function will strictly work on the local storage of the cities searched
+function cityLocalStore(cityName){
+    localStorage.setItem("place",cityName)
+    console.log(localStorage.place)
+    }
 // this function is used to call the renderFiveDay() and renderCurrentDay()
 // the console.log is ensuring that the data from weather function is passing through
 function renderItems(cityName,data){
     renderCurrentDay(cityName,data)
     renderFiveDay(data)
+    cityLocalStore(cityName)
     console.log(cityName,data)
 }
 // this function will find the longitude and latitude
