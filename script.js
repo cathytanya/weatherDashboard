@@ -28,11 +28,12 @@ function renderCurrentDay(cityName,data){
     console.log(uv)
     console.log(con)
     // using .textContent/.innerHTML for the rendered information to appear on the application
-    cityName.textContent=" City: "+name;
-    temp.textContent =" Temperature: "+tempK+"°C";
-    humidity.textContent =" Humidity: "+humid+" %";
-    windSpeed.textContent =" Wind Speed: "+speedW+" km/h";
-    indexUV.textContent =" UV index: "+uv+" ";
+    cityName.textContent=" City: "+ name;
+    temp.textContent =" Temperature: "+ tempC +" °C";
+    humidity.textContent =" Humidity: "+ humid +" %";
+    windSpeed.textContent =" Wind Speed: "+ speedW +" km/h";
+    indexUV.textContent =" UV index: "+ uv +" ";
+    // this if statement changes the colour of the UX index
     if (uv >= 0 && uv <= 2){
         indexUV.setAttribute("style","background: green; border-style: solid; width:fit-content; color:white")
     }else if (uv >= 3 && uv <= 5){
@@ -43,12 +44,6 @@ function renderCurrentDay(cityName,data){
         indexUV.setAttribute("style","background: red; border-style: solid; width:fit-content; color:white")
     }
     icon.innerHTML = con;
-
-    
-
-
-
-
     // for the icon use innerHTML because since its not actual text
     // everything else would use textcontent
 }
