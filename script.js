@@ -5,27 +5,32 @@ let inputCity = document.querySelector(".inputCity")
 let city = document.querySelector(".cityName")
 let temp = document.querySelector(".temp")
 let icon = document.querySelector(".icon")
+let descjs = document.querySelector("#description")
 let humidity = document.querySelector(".humidity")
 let windSpeed = document.querySelector(".windSpeed")
 let indexUV = document.querySelector(".indexUV")
 // these variables are used in future day section of the application
 let temp0js = document.querySelector("#temp0")
 let icon0js = document.querySelector("#icon0")
+let desc0js = document.querySelector("#description0")
 let humidity0js = document.querySelector("#humidity0")
 let windSpeed0js = document.querySelector("#windSpeed0")
 
 let temp1js = document.querySelector("#temp1")
 let icon1js = document.querySelector("#icon1")
+let desc1js = document.querySelector("#description1")
 let humidity1js = document.querySelector("#humidity1")
 let windSpeed1js = document.querySelector("#windSpeed1")
 
 let temp2js = document.querySelector("#temp2")
 let icon2js = document.querySelector("#icon2")
+let desc2js = document.querySelector("#description2")
 let humidity2js = document.querySelector("#humidity2")
 let windSpeed2js = document.querySelector("#windSpeed2")
 
 let temp3js = document.querySelector("#temp3")
 let icon3js = document.querySelector("#icon3")
+let desc3js = document.querySelector("#description3")
 let humidity3js = document.querySelector("#humidity3")
 let windSpeed3js = document.querySelector("#windSpeed3")
 
@@ -43,6 +48,7 @@ function renderCurrentDay(cityName,data){
     let speedW = Math.round((data.current.wind_speed*3.6))
     let uv = data.current.uvi
     let con = data.current.weather[0].icon
+    let desc = data.current.weather[0].description
     // console logging the data to verify its correct
     console.log(name)
     console.log(tempC)
@@ -50,24 +56,24 @@ function renderCurrentDay(cityName,data){
     console.log(speedW)
     console.log(uv)
     console.log(con)
-    console.log(data.current.weather.description)
     // using .textContent/.innerHTML for the rendered information to appear on the application
     city.textContent=" City: "+ name;
-    temp.textContent ="Temperature:"+ tempC +" °C";
-    humidity.textContent ="Humidity:"+ humid +" %";
-    windSpeed.textContent ="Wind Speed:"+ speedW +" km/h";
-    indexUV.textContent ="UV index:"+ uv +" ";
+    temp.textContent ="Temperature: "+ tempC +" °C";
+    description.textContent = desc;
+    humidity.textContent ="Humidity: "+ humid +" %";
+    windSpeed.textContent ="Wind Speed: "+ speedW +" km/h";
+    indexUV.textContent ="UV index: "+ uv +" ";
     // this if statement changes the colour of the UX index
-    if (uv >= 0 && uv <= 2){
+    if (uv >= 0 || uv <= 2){
         indexUV.setAttribute("style","background: green; border-style: solid; width:fit-content; color:white;text-align: center;")
-    }else if (uv >= 3 && uv <= 5){
+    }else if (uv >= 3 || uv <= 5){
         indexUV.setAttribute("style","background: yellow; border-style: solid; width:fit-content;text-align: center;")
-    }else if (uv >= 6 && uv <= 7){
+    }else if (uv >= 6 || uv <= 7){
         indexUV.setAttribute("style","background: orange; border-style: solid; width:fit-content;text-align: center;")
     }else{
         indexUV.setAttribute("style","background: red; border-style: solid; width:fit-content; color:whitetext-align: center;")
     }
-    icon.innerHTML = "Description:\n <img src=http://openweathermap.org/img/wn/"+con+".png>\n"+data.current.weather[0].description;
+    icon.innerHTML = "<img src=http://openweathermap.org/img/wn/"+con+".png>";
 }
 
 function renderFiveDay(data){
@@ -77,15 +83,24 @@ function renderFiveDay(data){
     $("#day1").text(date.add(1, 'days').format("MMM Do, YYYY"));
     $("#day2").text(date.add(1, 'days').format("MMM Do, YYYY"));
     $("#day3").text(date.add(1, 'days').format("MMM Do, YYYY"));
+    console.log(data)
+    // rendering the day 0 on the application
+    let temp0C = Math.round(100*((data.daily[0].temp.day)-273.15))/100;
+    let desc0 = data.daily[0].weather[0].description
+    let icon0image = data.daily[0].weather[0].icon
+    let humid0 = data.daily[0].humidity
+    let windspeed0 = Math.round((data.daily[0].wind_speed*3.6))
+    temp0.textContent ="Temperature: "+ temp0C +" °C";
+    icon0.innerHTML = "<img src=http://openweathermap.org/img/wn/"+icon0image+".png>";
+    description0.textContent = desc0;
+    humidity0.textContent ="Humidity: "+ humid0 +" %";
+    windSpeed0.textContent ="Wind Speed: "+ windspeed0 +" km/h";
 
 
 
 
 
-    // createelement (method)
-    // class called five-day
-        // have an empty container that will allow you to append elements which will be added to this function
-        // use only append
+
     
 
 
