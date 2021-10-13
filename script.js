@@ -1,12 +1,15 @@
 // set variables to call information from the html
 let submitbtn = document.querySelector(".buttonSubmit")
 let inputCity = document.querySelector(".inputCity")
+// these variables are used in current day section of the application
 let city = document.querySelector(".cityName")
 let temp = document.querySelector(".temp")
 let icon = document.querySelector(".icon")
 let humidity = document.querySelector(".humidity")
 let windSpeed = document.querySelector(".windSpeed")
 let indexUV = document.querySelector(".indexUV")
+// these variables are used in future day section of the application
+
 
 function renderCurrentDay(cityName,data){
     console.log(data)
@@ -51,7 +54,7 @@ function renderCurrentDay(cityName,data){
     // everything else would use textcontent
 }
 
-function renderFiveDay(){
+function renderFiveDay(cityName,data){
 
     // createelement (method)
     // class called five-day
