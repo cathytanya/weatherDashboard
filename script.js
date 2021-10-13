@@ -9,7 +9,25 @@ let humidity = document.querySelector(".humidity")
 let windSpeed = document.querySelector(".windSpeed")
 let indexUV = document.querySelector(".indexUV")
 // these variables are used in future day section of the application
+let temp0js = document.querySelector("#temp0")
+let icon0js = document.querySelector("#icon0")
+let humidity0js = document.querySelector("#humidity0")
+let windSpeed0js = document.querySelector("#windSpeed0")
 
+let temp1js = document.querySelector("#temp1")
+let icon1js = document.querySelector("#icon1")
+let humidity1js = document.querySelector("#humidity1")
+let windSpeed1js = document.querySelector("#windSpeed1")
+
+let temp2js = document.querySelector("#temp2")
+let icon2js = document.querySelector("#icon2")
+let humidity2js = document.querySelector("#humidity2")
+let windSpeed2js = document.querySelector("#windSpeed2")
+
+let temp3js = document.querySelector("#temp3")
+let icon3js = document.querySelector("#icon3")
+let humidity3js = document.querySelector("#humidity3")
+let windSpeed3js = document.querySelector("#windSpeed3")
 
 function renderCurrentDay(cityName,data){
     console.log(data)
@@ -49,12 +67,20 @@ function renderCurrentDay(cityName,data){
     }else{
         indexUV.setAttribute("style","background: red; border-style: solid; width:fit-content; color:whitetext-align: center;")
     }
-    icon.innerHTML = "Description: <img src=http://openweathermap.org/img/wn/"+con+".png>  "+data.current.weather[0].description;
-    // for the icon use innerHTML because since its not actual text
-    // everything else would use textcontent
+    icon.innerHTML = "Description:\n <img src=http://openweathermap.org/img/wn/"+con+".png>\n"+data.current.weather[0].description;
 }
 
-function renderFiveDay(cityName,data){
+function renderFiveDay(data){
+    // this will make produce the date for each of the future days
+    let date = moment();
+    $("#day0").text(date.add(1, 'days').format("MMM Do, YYYY"));
+    $("#day1").text(date.add(1, 'days').format("MMM Do, YYYY"));
+    $("#day2").text(date.add(1, 'days').format("MMM Do, YYYY"));
+    $("#day3").text(date.add(1, 'days').format("MMM Do, YYYY"));
+
+
+
+
 
     // createelement (method)
     // class called five-day
@@ -68,7 +94,7 @@ function renderFiveDay(cityName,data){
 // the console.log is ensuring that the data from weather function is passing through
 function renderItems(cityName,data){
     renderCurrentDay(cityName,data)
-    renderFiveDay(cityName,data)
+    renderFiveDay(data)
     console.log(cityName,data)
 }
 // this function will find the longitude and latitude
