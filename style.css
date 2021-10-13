@@ -12,11 +12,11 @@ header{
     text-align: center;
 }
 /* overall body styling for the html */
-body{
-    background: url(https://cdn.windowsreport.com/wp-content/uploads/2019/08/Storm-Weather-886x590.jpg);
-    background-repeat: no-repeat ;
-    background-size: cover;
-}
+/* body{ */
+    /* background: url(https://cdn.windowsreport.com/wp-content/uploads/2019/08/Storm-Weather-886x590.jpg); */
+    /* background-repeat: no-repeat ;
+    background-size: cover; */
+/* } */
 /* styling for the input box */
 .input{
 background: whitesmoke;
