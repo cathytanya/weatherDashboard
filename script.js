@@ -1,6 +1,8 @@
 // set variables to call information from the html
 let submitbtn = document.querySelector(".buttonSubmit")
 let inputCity = document.querySelector(".inputCity")
+let historyCity = document.querySelector("#searchHistory")
+
 // these variables are used in current day section of the application
 let city = document.querySelector(".cityName")
 let temp = document.querySelector(".temp")
@@ -9,6 +11,8 @@ let descjs = document.querySelector("#description")
 let humidity = document.querySelector(".humidity")
 let windSpeed = document.querySelector(".windSpeed")
 let indexUV = document.querySelector(".indexUV")
+
+let cities = JSON.parse(localStorage.getItem("cities")??"[]")
 
 function renderCurrentDay(cityName,data){
     console.log(data)
@@ -108,25 +112,18 @@ function renderFiveDay(data){
     humidity3.textContent ="Humidity: "+ humid3 +" %";
     windSpeed3.textContent ="Wind Speed: "+ windspeed3 +" km/h";
 }
-// this function will strictly work on the local storage of the cities searched
-// inputCity.addEventListener("input", cityNameStorage(){} )
-function cityLocalStore(cityName){
-    let searchHistory = document.getElementById('searchHistory'); 
-    searchHistory.appendChild(cityName)
-    // searchHistory.createElement("button")
-    // searchHistory.append(button);
 
-    }
 // this function is used to call the renderFiveDay() and renderCurrentDay()
 // the console.log is ensuring that the data from weather function is passing through
 function renderItems(cityName,data){
     renderCurrentDay(cityName,data)
     renderFiveDay(data)
-    cityLocalStore(cityName)
     console.log(cityName,data)
 }
 // this function will find the longitude and latitude
 function corrfind(){
+    cities.push(inputCity.value)
+    localStorage.setItem("cities",JSON.stringify(cities))
     let key = "720340e154314c77dd80d328e3567077"
     // this element is holding the api link for the 
     let weatherURL = "https://api.openweathermap.org/data/2.5/forecast?q="+inputCity.value+"&appid="+key
@@ -171,3 +168,12 @@ function weather(data){
 }
 
     submitbtn.addEventListener("click",corrfind);
+    button.addEventListener("click",corrfind);
+
+    for (let i = 0; i < cities.length; i++) {
+        const nameSearch = cities[i];
+        const button = document.createElement("button")
+        button.innerText = nameSearch
+        historyCity.appendChild(button)
+        
+    }
