@@ -168,12 +168,11 @@ function weather(data){
 }
 
     submitbtn.addEventListener("click",corrfind);
-    button.addEventListener("click",corrfind);
+    historyCity.addEventListener("click",corrfind)
 
     for (let i = 0; i < cities.length; i++) {
         const nameSearch = cities[i];
         const button = document.createElement("button")
         button.innerText = nameSearch
         historyCity.appendChild(button)
-        
     }

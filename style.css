@@ -43,3 +43,9 @@ text-align: center;
     border: 1px solid #252506;
     width:fit-content;
 }
+
+button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
