@@ -109,9 +109,13 @@ function renderFiveDay(data){
     windSpeed3.textContent ="Wind Speed: "+ windspeed3 +" km/h";
 }
 // this function will strictly work on the local storage of the cities searched
+// inputCity.addEventListener("input", cityNameStorage(){} )
 function cityLocalStore(cityName){
-    localStorage.setItem("place",cityName)
-    console.log(localStorage.getitem("place"))
+    let searchHistory = document.getElementById('searchHistory'); 
+    searchHistory.appendChild(cityName)
+    // searchHistory.createElement("button")
+    // searchHistory.append(button);
+
     }
 // this function is used to call the renderFiveDay() and renderCurrentDay()
 // the console.log is ensuring that the data from weather function is passing through
@@ -165,4 +169,5 @@ function weather(data){
     // verified that this is where the city's name is located in the API
     console.log(cityName)
 }
-        submitbtn.addEventListener("click",corrfind);
+
+    submitbtn.addEventListener("click",corrfind);
